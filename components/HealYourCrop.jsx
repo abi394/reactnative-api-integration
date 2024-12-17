@@ -24,9 +24,9 @@ export default function HealYourCrop({navigation}) {
 
   const openCamera = () => {
     const options = {
-      mediaType: 'photo', // or 'video' or 'mixed'
-      includeBase64: false, // Include base64 representation of the image
-      quality: 1, // Image quality (0 to 1)
+      mediaType: 'photo',
+      includeBase64: false,
+      quality: 1, 
     };
     launchCamera(options, response => {
       if (response.didCancel) {
@@ -60,21 +60,21 @@ export default function HealYourCrop({navigation}) {
       {!imageUri ? (<View style={styles.card}>
         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: 10 }}>
           <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <Image source={require('../assets/take_a_picture.png')} style={styles.image} />
+            <Image source={require('../assets/take_photo.png')} style={styles.image} />
             <Text style={styles.text}>Take a picture</Text>
           </View>
           <View style={styles.iconView}>
-            <Icon name="angle-right" size={40} color="grey" iconStyle="solid" style={styles.Icon} />
+            <Icon name="angle-right" size={35} color="grey" iconStyle="solid" style={styles.Icon} />
           </View>
           <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <Image source={require('../assets/diagnosis.png')} style={[styles.image,]} />
+            <Image source={require('../assets/diagnosis_new.png')} style={[styles.image,]} />
             <Text style={styles.text}>see Diagnosis</Text>
           </View>
           <View style={styles.iconView}>
-            <Icon name="angle-right" size={40} color="grey" iconStyle="solid" style={styles.Icon} />
+            <Icon name="angle-right" size={35} color="grey" iconStyle="solid" style={styles.Icon} />
           </View>
           <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <Image source={require('../assets/medicine.png')} style={styles.image} />
+            <Image source={require('../assets/medicine_new.png')} style={styles.image} />
             <Text style={styles.text}>Get Medicine</Text>
           </View>
         </View>
@@ -86,7 +86,7 @@ export default function HealYourCrop({navigation}) {
       </View>
 
       ) : (
-        <ImageDetails props={imageUri} navigation={navigation}/>
+        <ImageDetails props={imageUri} navigation={navigation} setImageUri={setImageUri}/>
       )}
       <Modal
         transparent={true}
@@ -95,22 +95,28 @@ export default function HealYourCrop({navigation}) {
         animationType='slide'
       
       >
-        <View style={{ backgroundColor: "black", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: "rgba(0, 0, 0, 0.8)", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View style={{ height: 200, width: "90%", backgroundColor: "white", borderRadius: 10, padding: 20 }}>
             <View style={{ flex: 1, justifyContent: 'space-between' }}>
-              <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-                <TouchableOpacity style={{ flexDirection: "column", alignItems: "center" }} onPress={openCamera}>
-                  <Icon name="camera" size={60} color="grey" iconStyle="solid" style={{ width: 65, color: "green" }} />
-                  <Text>Take photo</Text>
+              <View style={{ flexDirection: "row", justifyContent: "space-around" ,alignItems:'center'}}>
+                <TouchableOpacity style={{ flexDirection: "column", alignItems: "center",justifyContent:'center' }} onPress={openCamera}>
+                  <View style={{padding:10,borderRadius:100,borderColor:"#a1e58f",borderWidth: 2 }}>
+                  <Icon name="camera" size={40} color="grey" iconStyle="solid" style={{ color: "#a1e58f" }} />
+                  </View>
+                  
+                  <Text style={{color:"grey"}}>Take photo</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ flexDirection: "column", alignItems: "center" }} onPress={openGallery}>
-                  <Icon name="images" size={60} color="grey" iconStyle="solid" style={{ width: 65, color: "green" }} />
-                  <Text style={{ fontSize: 14 }}>Choose from gallery</Text>
+                <TouchableOpacity style={{ flexDirection: "column", alignItems: "center",justifyContent:'center' }} onPress={openGallery}>
+                  <View style={{padding:10,borderRadius:100,borderColor:"#a1e58f",borderWidth: 2 }}>
+                  <Icon name="images" size={40} color="grey" iconStyle="solid" style={{  color: "#a1e58f" }} />
+                  </View>
+                 
+                  <Text style={{ fontSize: 14,color:"grey"}}>Choose from gallery</Text>
                 </TouchableOpacity>
               </View>
 
               <View style={{ alignItems: "flex-end" }}>
-                <TouchableOpacity onPress={() => SetIsModalVisible(false)} style={{ backgroundColor: "grey", width: 100, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10 }}>
+                <TouchableOpacity onPress={() => SetIsModalVisible(false)} style={{ backgroundColor: "lightgrey", width: 100, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10 }}>
                   <Text style={{ textAlign: 'center' }}>cancel</Text>
                 </TouchableOpacity>
               </View>
@@ -129,7 +135,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     height: 200,
     borderRadius: 10,
-    padding: 10
+    padding: 10,
+    margin:10
   },
   image: {
     height: 60,
@@ -144,6 +151,7 @@ const styles = StyleSheet.create({
   },
   Icon: {
     width: 25,
+    textAlign:"center"
   },
   text: {
     color: "grey"

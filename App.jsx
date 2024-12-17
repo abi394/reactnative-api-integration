@@ -34,6 +34,7 @@ import CameraUi from './components/CameraUi';
 import Diagnosis from './components/Diagnosis';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DetailedDiagnosis from './components/DetailedDiagnosis';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,7 +48,8 @@ function App() {
         <View style={{ flex: 1 }}>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="healCropOption" component={HealYourCrop} />
-            <Stack.Screen name="diagnosisDetails" component={Diagnosis} />
+            <Stack.Screen name="diagnosis" component={Diagnosis} />
+            <Stack.Screen name="detailedDiagnosis" component={DetailedDiagnosis} />
           </Stack.Navigator>
         </View>
       </SafeAreaView>
