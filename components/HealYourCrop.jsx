@@ -25,6 +25,8 @@ export default function HealYourCrop({navigation}) {
   const openCamera = () => {
     const options = {
       mediaType: 'photo',
+      maxWidth: 1600,   // Width aligned with the recommendation
+      maxHeight: 1200,
       includeBase64: false,
       quality: 1, 
     };

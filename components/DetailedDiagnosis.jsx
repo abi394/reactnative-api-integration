@@ -1,7 +1,13 @@
 import Icon from "@react-native-vector-icons/fontawesome6";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function DetailedDiagnosis() {
+export default function DetailedDiagnosis({navigation}) {
+
+    const navigate=()=>{
+        console.log("hello")
+        navigation.navigate("treatment")
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <ScrollView style={{ flex: 1, }}>
@@ -58,11 +64,19 @@ export default function DetailedDiagnosis() {
                         will eventually look like shot holes when the center dries up. Bacterial spot produces similar lesion of fruits as it does on the leaves and eventually roughen, becoming brown and scabbed.
                     </Text>
                 </View>
+                <View style={{ flex: 1 }}>
+                    <Text style={{ flex: 1, fontSize: 15, color: "grey", paddingBottom: 50 }}>
+                        symptoms can be seen on the foliage stem fruit of tomato initially small yellow green solutions appears on young leaves for bacterial spot while bacterial speak cause black spot with narrow yellow hello they are usually
+                        more numerous on leaf margin or tips which may appear deformed antisted in several cases the support of bacterial spect may collision or overlap resulting in larger regular relations
+                        bacterial solutions can enlarged from 0.25 cm to 0.5 cm and become time to brown straight which will enlarge acterial spot lesions can enlarge from 0.25 cm to 0.5 cm and become tan to brownish-red, which
+                        will eventually look like shot holes when the center dries up. Bacterial spot produces similar lesion of fruits as it does on the leaves and eventually roughen, becoming brown and scabbed.
+                    </Text>
+                </View>
                 </View>
             </ScrollView>
             <View style={{ height: 150, backgroundColor: "transparent", borderTopLeftRadius: 20, borderBottomRightRadius: 20 ,backgroundColor:"white"}}>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}  >
+                    <TouchableOpacity style={styles.button} onPress={navigate}>
                         <Text style={styles.buttonText}>Confirm and See treatment</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ marginTop: 20 }}>

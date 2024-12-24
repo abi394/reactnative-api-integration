@@ -30,11 +30,12 @@ import {
 
 import Icon from '@react-native-vector-icons/fontawesome6';
 import HealYourCrop from './components/HealYourCrop';
-import CameraUi from './components/CameraUi';
 import Diagnosis from './components/Diagnosis';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DetailedDiagnosis from './components/DetailedDiagnosis';
+import treatment from './components/Treatment';
+import Treatment from './components/Treatment';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,10 +51,10 @@ function App() {
             <Stack.Screen name="healCropOption" component={HealYourCrop} />
             <Stack.Screen name="diagnosis" component={Diagnosis} />
             <Stack.Screen name="detailedDiagnosis" component={DetailedDiagnosis} />
+            <Stack.Screen name="treatment" component={Treatment} />
           </Stack.Navigator>
         </View>
       </SafeAreaView>
-
     </NavigationContainer>
   );
 }
