@@ -24,6 +24,9 @@ export default function Diagnosis({navigation,route}) {
                 <Text style={{ fontSize: 26, fontWeight: "bold" }}>
                    {obj?.common_name}
                 </Text>
+                <Text style={{ fontSize: 15, fontWeight: "bold",color:"grey" }}>
+                   {obj?.hosts}
+                </Text>
                 <View style={{ flexDirection: "row", gap: 5, marginTop: 10 }}>
                     <Icon name="book-medical" size={18} color="grey" iconStyle="solid" style={{ width: 20, marginTop: 2 }} />
                     <Text style={{ fontSize: 15, fontWeight: "bold" }}>Symptoms</Text>

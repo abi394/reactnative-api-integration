@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { reporter } from "../metro.config";
 import Icon from "@react-native-vector-icons/fontawesome6";
-import Config from 'react-native-config';
 
 
 export default function ImageDetails({ props, navigation, setImageUri, SetIsModalVisible }) {
@@ -10,18 +9,19 @@ export default function ImageDetails({ props, navigation, setImageUri, SetIsModa
     const [displayModal, setDisplayModal] = useState(false)
     const [errorData, setErrorData] = useState(null)
     useEffect(() => {
+        console.log(process.env.test_key,123456897456)
         console.log(props, "img")
         async function fetchData() {
             setLoading(true)
             try {
                 const response = await fetch(
-                    // "https://api.plantix.net/v2/image_analysis",
-                    "https://stoplight.io/mocks/plantix/api-reference/382663/v2/image_analysis",
+                   process.env.mock_api,
                     {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
-                            Authorization: `Bearer 123456`,
+                            // Authorization: "Bearer 1a863bfbc6beae98ad80afc441017cb4a181c8fc",
+                            Authorization: `Bearer ${process.env.Mock_test_key}`,
                         },
                         body: createFormData(),
                     }
