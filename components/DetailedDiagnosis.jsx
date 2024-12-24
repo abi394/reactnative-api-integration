@@ -1,7 +1,8 @@
 import Icon from "@react-native-vector-icons/fontawesome6";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function DetailedDiagnosis({navigation}) {
+export default function DetailedDiagnosis({navigation,route}) {
+    const { data } = route.params;
 
     const navigate=()=>{
         console.log("hello")
@@ -13,7 +14,7 @@ export default function DetailedDiagnosis({navigation}) {
             <ScrollView style={{ flex: 1, }}>
                 {/* <View style={{backgroundColor:"grey",flex:1}}></View> */}
                 <View style={{flex:1, padding: 10,backgroundColor:"#f2f2f2"}}>
-                <Text style={{ fontSize: 25, fontWeight: "500" }}>Baterial Spot and Speck of Tomato</Text>
+                <Text style={{ fontSize: 25, fontWeight: "500" }}>{data?.common_name}</Text>
                 <Text style={{ color: "lightGreen", fontSize: 16, fontWeight: "500" }}>Bacteria</Text>
                 <ScrollView
                     horizontal

@@ -25,8 +25,6 @@ export default function HealYourCrop({navigation}) {
   const openCamera = () => {
     const options = {
       mediaType: 'photo',
-      maxWidth: 1600,   // Width aligned with the recommendation
-      maxHeight: 1200,
       includeBase64: false,
       quality: 1, 
     };
@@ -88,14 +86,13 @@ export default function HealYourCrop({navigation}) {
       </View>
 
       ) : (
-        <ImageDetails props={imageUri} navigation={navigation} setImageUri={setImageUri}/>
+        <ImageDetails props={imageUri} navigation={navigation} setImageUri={setImageUri} SetIsModalVisible={SetIsModalVisible} />
       )}
       <Modal
         transparent={true}
         onRequestClose={() => SetIsModalVisible(false)}
         visible={isModalVisible}
         animationType='slide'
-      
       >
         <View style={{ backgroundColor: "rgba(0, 0, 0, 0.8)", flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View style={{ height: 200, width: "90%", backgroundColor: "white", borderRadius: 10, padding: 20 }}>

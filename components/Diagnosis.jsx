@@ -1,10 +1,14 @@
 import Icon from "@react-native-vector-icons/fontawesome6"
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-export default function Diagnosis({navigation}) {
+export default function Diagnosis({navigation,route}) {
 
-    const navigate=()=>{
-        navigation.navigate("detailedDiagnosis")
+    const { data } = route.params;
+    console.log(data,456)
+
+
+    const navigate=(obj)=>{
+        navigation.navigate("detailedDiagnosis",{data:obj})
     }
 
     return (
@@ -16,38 +20,35 @@ export default function Diagnosis({navigation}) {
                     Please Check if any of the below diseases match the damage on your crop
                 </Text>
             </View>
-            <View style={{ marginTop: 20, borderWidth: 1, borderColor: "grey", borderRadius: 10, paddingHorizontal: 10, paddingVertical: 10,paddingBottom:25 }}>
+           {data.predicted_diagnoses.map((obj)=>(<View style={{ marginTop: 20, borderWidth: 1, borderColor: "grey", borderRadius: 10, paddingHorizontal: 10, paddingVertical: 10,paddingBottom:25 }}>
                 <Text style={{ fontSize: 26, fontWeight: "bold" }}>
-                    Bacteria spot
+                   {obj?.common_name}
                 </Text>
                 <View style={{ flexDirection: "row", gap: 5, marginTop: 10 }}>
                     <Icon name="book-medical" size={18} color="grey" iconStyle="solid" style={{ width: 20, marginTop: 2 }} />
                     <Text style={{ fontSize: 15, fontWeight: "bold" }}>Symptoms</Text>
                 </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, marginTop: 10 }}>
+                {obj?.symptoms_short.map((data)=>(<View style={{ flexDirection: "row", justifyContent: "center", gap: 5, marginTop: 10 }}>
                     <Icon name="circle" size={6} color="grey" iconStyle="solid" style={{ width: 10, marginTop: 6 }} />
-                    <Text style={{ flex: 1 }}>Small dark spots with a yellow halo on leaves and fruits</Text>
-                </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, marginTop: 10 }}>
-                    <Icon name="circle" size={6} color="grey" iconStyle="solid" style={{ width: 10, marginTop: 6 }} />
-                    <Text style={{ flex: 1 }}>Small dark spots with a yellow halo on leaves and fruits</Text>
-                </View>
+                    <Text style={{ flex: 1 }}>{data}</Text>
+                </View>))}
+                
                 <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, borderRadius: 20, overflow: "hidden", marginTop: 10 }}>
                     <View style={{ flex: 1 }}>
                         <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
+                            source={{ uri: obj?.image_references[0] }}
                             style={{ flex: 1, height: 225, }}
                             resizeMode="cover"
                         />
                     </View>
                     <View style={{ flex: 1, flexDirection: "column", gap: 5 }}>
                         <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
+                            source={{ uri:obj?.image_references[1] }}
                             style={{ flex: 1, height: 110 }}
                             resizeMode="cover"
                         />
                         <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
+                            source={{ uri: obj?.image_references[2] }}
                             style={{ flex: 1, height: 110 }}
                             resizeMode="cover"
                         />
@@ -55,57 +56,14 @@ export default function Diagnosis({navigation}) {
                     </View>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={navigate} >
+                    <TouchableOpacity style={styles.button} onPress={()=>navigate(obj)} >
                         <Text style={styles.buttonText}>See diagnosis</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View>)) }
 
 
-            <View style={{ marginTop: 20, borderWidth: 1, borderColor: "grey", borderRadius: 10, paddingHorizontal: 10, paddingVertical: 10,paddingBottom:25 }}>
-                <Text style={{ fontSize: 26, fontWeight: "bold" }}>
-                    Bacteria spot
-                </Text>
-                <View style={{ flexDirection: "row", gap: 5, marginTop: 10 }}>
-                    <Icon name="book-medical" size={18} color="grey" iconStyle="solid" style={{ width: 20, marginTop: 2 }} />
-                    <Text style={{ fontSize: 15, fontWeight: "bold" }}>Symptoms</Text>
-                </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, marginTop: 10 }}>
-                    <Icon name="circle" size={6} color="grey" iconStyle="solid" style={{ width: 10, marginTop: 6 }} />
-                    <Text style={{ flex: 1 }}>Small dark spots with a yellow halo on leaves and fruits</Text>
-                </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, marginTop: 10 }}>
-                    <Icon name="circle" size={6} color="grey" iconStyle="solid" style={{ width: 10, marginTop: 6 }} />
-                    <Text style={{ flex: 1 }}>Small dark spots with a yellow halo on leaves and fruits</Text>
-                </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", gap: 5, borderRadius: 20, overflow: "hidden", marginTop: 10 }}>
-                    <View style={{ flex: 1 }}>
-                        <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
-                            style={{ flex: 1, height: 225, }}
-                            resizeMode="cover"
-                        />
-                    </View>
-                    <View style={{ flex: 1, flexDirection: "column", gap: 5 }}>
-                        <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
-                            style={{ flex: 1, height: 110 }}
-                            resizeMode="cover"
-                        />
-                        <Image
-                            source={{ uri: "https://content.peat-cloud.com/visualsearch/__w-100-200-400-600-800-1000__/c28c8366380688797dc08e766261a86a3f6afe6e.jpg" }}
-                            style={{ flex: 1, height: 110 }}
-                            resizeMode="cover"
-                        />
-
-                    </View>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={navigate} >
-                        <Text style={styles.buttonText}>See diagnosis</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+           
 
             
         </ScrollView>
